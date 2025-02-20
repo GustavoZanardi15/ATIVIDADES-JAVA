@@ -31,24 +31,25 @@ Este é um projeto simples de CRUD (Create, Read, Update, Delete) para uma livra
    git clone https://github.com/SEU_USUARIO/livraria.git](https://github.com/GustavoZanardi15/ATIVIDADES-JAVA.git
 
 
-   Navegue até a pasta do projeto:
+  
 
-
+Navegue até a pasta do projeto:
 cd livraria
+
 Compile o projeto com o Maven:
-
 mvn clean install
-Execute a aplicação:
 
+Execute a aplicação:
 mvn spring-boot:run
 A aplicação estará disponível em http://localhost:8080.
 
 Endpoints da API
-GET /livros: Retorna todos os livros cadastrados.
-POST /livros: Cria um novo livro.
-GET /livros/{id}: Retorna um livro específico.
-PUT /livros/{id}: Atualiza os dados de um livro.
-DELETE /livros/{id}: Exclui um livro.
+- GET /livros: Retorna todos os livros cadastrados.
+- POST /livros: Cria um novo livro.
+- GET /livros/{id}: Retorna um livro específico.
+- PUT /livros/{id}: Atualiza os dados de um livro.
+- DELETE /livros/{id}: Exclui um livro.
+  
 Banco de Dados
 O projeto utiliza o banco de dados H2, que é uma solução em memória. Os dados não serão persistidos após a aplicação ser desligada. Para visualizar o banco de dados, você pode acessar o console web do H2 em:
 
