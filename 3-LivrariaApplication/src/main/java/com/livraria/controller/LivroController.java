@@ -28,11 +28,11 @@ public class LivroController {
     }
 
 
-//    @GetMapping("/{id}")
-//    public Livro buscarLivro(@PathVariable Long id) {
-//        Optional<Livro> livro = livros.stream().filter(l -> l.getId().equals(id)).findFirst();
-//        return livro.orElse(null);
-//    }
+   @GetMapping("/{id}")
+   public Livro buscarLivro(@PathVariable Long id) {
+       Optional<Livro> livro = livros.stream().filter(l -> l.getId().equals(id)).findFirst();
+       return livro.orElse(null);
+}
 //
 //
 //    @PutMapping("/{id}")
