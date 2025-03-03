@@ -3,7 +3,7 @@ package com.example.campeonato.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
+
 
 @Entity
 public class Campeonato {
