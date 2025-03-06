@@ -18,10 +18,9 @@ public class LivroService {
         return livroRepository.findAll();
     }
 
-    public Livro BuscarLivroPorID(Long id) {
-        return livroRepository.findById(id).get();
+    public Livro BuscarLivroPorId(Long id) {
+        return livroRepository.findById(id).orElse(null);
     }
-
     public Livro SalvarLivro(Livro livro) {
         return livroRepository.save(livro);
     }
