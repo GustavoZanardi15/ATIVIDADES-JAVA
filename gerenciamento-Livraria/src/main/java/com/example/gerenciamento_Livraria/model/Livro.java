@@ -1,9 +1,7 @@
 package com.example.gerenciamento_Livraria.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.example.gerenciamento_Livraria.enums.StatusLivro;
+import jakarta.persistence.*;
 
 @Entity
 public class Livro {
@@ -14,6 +12,9 @@ public class Livro {
     private String titulo;
     private String autor;
     private int anoPublicacao;
+
+    @Enumerated(EnumType.STRING)
+    private StatusLivro statusLivro;
 
     public Livro() {}
 
