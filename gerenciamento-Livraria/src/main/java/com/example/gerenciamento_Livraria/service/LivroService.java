@@ -14,39 +14,28 @@ public class LivroService {
     @Autowired
     private LivroRepository livroRepository;
 
-    public List<Livro> ListarLivros() {
+    public List<Livro> listarLivros() {
         return livroRepository.findAll();
     }
 
-    public Livro BuscarLivroPorId(Long id) {
+    public Livro buscarLivroPorId(Long id) {
         return livroRepository.findById(id).orElse(null);
     }
-    public Livro SalvarLivro(Livro livro) {
+
+    public Livro salvarLivro(Livro livro) {
         return livroRepository.save(livro);
     }
 
     public Livro atualizarLivro(Long id, Livro livroAtualizado) {
-        Optional<Livro> optionalLivro = livroRepository.findById(id);
-
-        if (optionalLivro.isPresent()) {
-            Livro livro = optionalLivro.get();
+        return livroRepository.findById(id).map(livro -> {
             livro.setTitulo(livroAtualizado.getTitulo());
-
+            livro.setAutor(livroAtualizado.getAutor());
+            livro.setAnoPublicacao(livroAtualizado.getAnoPublicacao());
             return livroRepository.save(livro);
-        } else {
-            return null;
-        }
+        }).orElse(null);
     }
 
-    public void DeletarLivro(Long id) {
-        Optional<Livro> optionalLivro = livroRepository.findById(id);
-
-        if (optionalLivro.isPresent()) {
-            livroRepository.deleteById(id);
-        } else {
-            throw new RuntimeException("Livro não encontrado com ID: " + id);
-        }
+    public void deletarLivro(Long id) {
+        livroRepository.deleteById(id);
     }
-
 }
-
