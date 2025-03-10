@@ -4,6 +4,7 @@ import com.example.gerenciamento_Livraria.enums.StatusLivro;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name = "livros")
 public class Livro {
 
     @Id
@@ -55,5 +56,13 @@ public class Livro {
 
     public void setAnoPublicacao(int anoPublicacao) {
         this.anoPublicacao = anoPublicacao;
+    }
+
+    public StatusLivro getStatusLivro() {
+        return statusLivro;
+    }
+
+    public void setStatusLivro(StatusLivro statusLivro) {
+        this.statusLivro = statusLivro;
     }
 }

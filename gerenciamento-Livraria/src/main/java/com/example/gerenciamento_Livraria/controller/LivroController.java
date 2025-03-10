@@ -1,5 +1,6 @@
 package com.example.gerenciamento_Livraria.controller;
 
+import com.example.gerenciamento_Livraria.enums.StatusLivro;
 import com.example.gerenciamento_Livraria.model.Livro;
 import com.example.gerenciamento_Livraria.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/livros")
+@RequestMapping("/api/livros")
 public class LivroController {
 
     @Autowired
@@ -42,5 +43,17 @@ public class LivroController {
     public ResponseEntity<Void> deletarLivro(@PathVariable Long id) {
         livroService.deletarLivro(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<Livro>> buscarPorStatus(@PathVariable StatusLivro status) {
+        List<Livro> livros = livroService.buscarPorStatus(status);
+        return livros.isEmpty() ? ResponseEntity.notFound().build() : ResponseEntity.ok(livros);
+    }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Livro> alterarStatus(@PathVariable Long id, @RequestBody StatusLivro novoStatus) {
+        Livro livro = livroService.alterarStatus(id, novoStatus);
+        return livro != null ? ResponseEntity.ok(livro) : ResponseEntity.notFound().build();
     }
 }

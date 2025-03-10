@@ -1,5 +1,6 @@
 package com.example.gerenciamento_Livraria.service;
 
+import com.example.gerenciamento_Livraria.enums.StatusLivro;
 import com.example.gerenciamento_Livraria.model.Livro;
 import com.example.gerenciamento_Livraria.repository.LivroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,11 +32,23 @@ public class LivroService {
             livro.setTitulo(livroAtualizado.getTitulo());
             livro.setAutor(livroAtualizado.getAutor());
             livro.setAnoPublicacao(livroAtualizado.getAnoPublicacao());
+            livro.setStatusLivro(livroAtualizado.getStatusLivro());
             return livroRepository.save(livro);
         }).orElse(null);
     }
 
     public void deletarLivro(Long id) {
         livroRepository.deleteById(id);
+    }
+
+    public List<Livro> buscarPorStatus(StatusLivro status) {
+        return livroRepository.findByStatusLivro(status);
+    }
+
+    public Livro alterarStatus(Long id, StatusLivro novoStatus) {
+        return livroRepository.findById(id).map(livro -> {
+            livro.setStatusLivro(novoStatus);
+            return livroRepository.save(livro);
+        }).orElse(null);
     }
 }
